@@ -33,7 +33,7 @@ const ContentWrapper = styled.div`
 
 const FootWrapper = styled.div`
   width: 100%;
-  height: 30px;
+  height: 40px;
   position: fixed;
   bottom: 0;
   z-index: 9;
