@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import palette from "../../../../styles/palette";
 import Link from "next/link";
-import Button from "../../../components/commons/button/loginbutton";
+import Button from "../../commons/button/loginbutton";
 
 // 회원가입 or 로그인폼 보여줌.
 
@@ -55,7 +55,7 @@ const textMap = {
   register: "회원가입",
 };
 
-const AuthForm = ({ type }) => {
+const loginForm = ({ type }) => {
   const text = textMap[type];
   return (
     <AuthFormBlock>
@@ -97,4 +97,4 @@ const AuthForm = ({ type }) => {
   );
 };
 
-export default AuthForm;
+export default loginForm;

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { UserOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import LoginPage from "../../../../../pages/login";
+import LoginButton from "../../../units/login";
 import { NavBarWrapper, Logo, NavLink, NavLinks } from "./headercss";
 
 const LayoutNavigation = (): JSX.Element => {
@@ -51,7 +51,9 @@ const LayoutNavigation = (): JSX.Element => {
           </NavLink>
         </NavLinks>
       </NavBarWrapper>
-      {isLoginVisible && <LoginPage onClose={() => setIsLoginVisible(false)} />}
+      {isLoginVisible && (
+        <LoginButton onClose={() => setIsLoginVisible(false)} />
+      )}
     </>
   );
 };

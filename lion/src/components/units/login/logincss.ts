@@ -2,47 +2,20 @@ import styled from "@emotion/styled";
 import palette from "../../../../styles/palette";
 import Button from "../../../components/commons/button/loginbutton";
 
-// export const AuthFormBlock = styled.div`
-//   position: fixed;
-//   left: 92%;
-//   top: 34%;
-//   transform: translate(-50%, -50%);
-//   z-index: 10;
-//   background-color: #ffffff;
-//   padding: 2rem;
-//   border-radius: 8px;
-//   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+export const LoginWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Change 'flex-end' to 'flex-start' to move it to the upper left corner */
+  align-items: flex-end; /* Change 'center' to 'flex-start' to move it to the upper left corner */
+  margin-top: 30px; /* Add some margin at the top for better positioning */
+  margin-left: 30px;
+`;
 
-//   &::before {
-//     content: "";
-//     position: absolute;
-//     bottom: 100%;
-//     left: 50%;
-//     margin-left: -10px; /* Adjust the value to position the tail */
-//     border-width: 10px;
-//     border-style: solid;
-//     border-color: transparent transparent #ffffff transparent;
-//   }
-//   @media (max-width: 768px) {
-//     left: 10px; /* Change the left position for small screens */
-//     top: calc(100% + 1rem);
-//     transform: none;
-//     width: calc(100% - 20px); /* Make it full width */
-//   }
-// `;
-
-export const AuthFormBlock = styled.div`
-  width: 300px;
-  height: 350px;
-  position: absolute;
-  left: 1150px;
-  top: 100px;
-  z-index: 10;
+export const LoginFormWrapper = styled.div`
   background-color: #ffffff;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-
   &::before {
     content: "";
     position: absolute;
@@ -52,6 +25,30 @@ export const AuthFormBlock = styled.div`
     border-width: 10px;
     border-style: solid;
     border-color: transparent transparent #ffffff transparent;
+  }
+
+  @media (max-width: 768px) {
+    /* 작은 화면에 대한 위치 조정 */
+    width: calc(100% - 20px);
+    left: 10px;
+    top: calc(100% + 1rem);
+    transform: none;
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    /* 중간 크기 화면에 대한 위치 조정 */
+    width: calc(100% - 20px);
+    left: 10px;
+    top: calc(100% + 1rem);
+    transform: none;
+  }
+
+  @media (min-width: 1025px) {
+    /* 큰 화면에 대한 위치 조정 */
+    width: 300px;
+    left: 50px;
+    top: 100px;
+    transform: none;
   }
 `;
 

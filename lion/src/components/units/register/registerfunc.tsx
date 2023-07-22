@@ -1,24 +1,15 @@
 import React from "react";
 import styled from "@emotion/styled";
-// import { Link } from "react-router-dom";
 import palette from "../../../../styles/palette";
-import Link from "next/link";
-// import palette from "../../lib/styles/palette";
 
 // 회원가입 / 로그인 페이지의 레이아웃 담당
 const AuthTemplateBlock = styled.div`
-  /* position: absolute; */
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  /* 내가 설정해놓은 paltte 에서 2번째 회색을 쓰겠어 */
-  /* background: ${palette.gray[2]}; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end; /* Change 'flex-end' to 'flex-start' to move it to the upper left corner */
+  align-items: flex-end; /* Change 'center' to 'flex-start' to move it to the upper left corner */
+  margin-top: 30px; /* Add some margin at the top for better positioning */
+  margin-left: 30px;
 `;
 
 // white box
@@ -32,19 +23,13 @@ const WhiteBox = styled.div`
     /* 글자 간격 */
     letter-spacing: 2px;
   }
-  /* 윤곽선 4면 전부 그림자로 입체감줌 */
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.025);
-  padding: 2rem;
-  width: 360px;
-  background: white;
-  border-radius: 2px;
 `;
 
-const AuthTemplate = ({ children }) => {
+const AuthTemplate = ({ children }): JSX.Element => {
   // 부모 컴포넌트 안에 있는 자식 컴포넌트 요소 띄우기
   return (
     <AuthTemplateBlock>
-      <WhiteBox>{children}</WhiteBox>
+      <WhiteBox className="틀">{children}</WhiteBox>
     </AuthTemplateBlock>
   );
 };
