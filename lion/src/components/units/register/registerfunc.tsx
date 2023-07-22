@@ -1,37 +1,66 @@
-import React from "react";
-import styled from "@emotion/styled";
-import palette from "../../../../styles/palette";
+// import Link from "next/link";
+import {
+  AuthFormBlock,
+  AuthTemplateBlock,
+  ButtonWithMarinTop,
+  StyledInput,
+  WhiteBox,
+} from "./registercss";
+import { useState } from "react";
 
-// 회원가입 / 로그인 페이지의 레이아웃 담당
-const AuthTemplateBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end; /* Change 'flex-end' to 'flex-start' to move it to the upper left corner */
-  align-items: flex-end; /* Change 'center' to 'flex-start' to move it to the upper left corner */
-  margin-top: 30px; /* Add some margin at the top for better positioning */
-  margin-left: 30px;
-`;
+export const registerForm = (): JSX.Element => {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    passwordConfirm: "",
+  });
 
-// white box
+  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
 
-const WhiteBox = styled.div`
-  .logo-area {
-    display: block;
-    padding-bottom: 2rem;
-    text-align: center;
-    font-weight: bold;
-    /* 글자 간격 */
-    letter-spacing: 2px;
-  }
-`;
+  const onSignUp = (event: React.FormEvent<HTMLFormElement>): void => {
+    // event.preventDefault();
+    console.log("Simulating sign-up:", formData);
+  };
 
-const AuthTemplate = ({ children }): JSX.Element => {
-  // 부모 컴포넌트 안에 있는 자식 컴포넌트 요소 띄우기
   return (
     <AuthTemplateBlock>
-      <WhiteBox className="틀">{children}</WhiteBox>
+      <WhiteBox>
+        <AuthFormBlock>
+          <h3>회원가입</h3>
+          <form onSubmit={onSignUp}>
+            {/* autocomplete 속성 >> 인풋에 자동완성하는 속성 
+                 username 은 사용자 이름 , new-password 는 보통 비밀번호 자동완성 막기 위해서 새로운 비밀번호나 비밀번호 확인란에 들어간다는뎅 ㅎ.. 
+                 머 일단 책은 이렇고 나는 나중에 보고 current-password 가 더 맞을거 같아서 임의로 바꿨음. */}
+            <StyledInput
+              autoComplete="username"
+              name="username"
+              placeholder="아이디"
+              value={formData.username}
+              onChange={onChangeInput}
+            />
+            <StyledInput
+              autoComplete="current-password"
+              name="password"
+              placeholder="비밀번호"
+              type="password"
+              value={formData.password}
+              onChange={onChangeInput}
+            />
+            <StyledInput
+              autoComplete="new-password"
+              name="passwordConfirm"
+              placeholder="비밀번호 확인"
+              type="password"
+              value={formData.passwordConfirm}
+              onChange={onChangeInput}
+            />
+            <ButtonWithMarinTop type="submit">회원가입</ButtonWithMarinTop>
+          </form>
+        </AuthFormBlock>
+      </WhiteBox>
     </AuthTemplateBlock>
   );
 };
-
-export default AuthTemplate;
