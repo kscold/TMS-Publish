@@ -53,12 +53,14 @@ const Login = (): JSX.Element => {
     password: "",
   });
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     const { name, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     // Here you can simulate the login process by checking the user data in local storage or any other client-side method
     // For example, you can use localStorage.getItem() to get the user data and simulate login.
