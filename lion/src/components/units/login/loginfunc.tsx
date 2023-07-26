@@ -40,11 +40,6 @@ const Login = (): JSX.Element => {
     }
   };
 
-  const onClickLogout = (): void => {
-    localStorage.removeItem("isLoggedIn");
-    setUserName(null); // Set the userName in Recoil state to null upon logout
-  };
-
   return (
     <LoginWrapper>
       <LoginFormWrapper>
@@ -72,7 +67,6 @@ const Login = (): JSX.Element => {
         <KakaoLoginButton />
         <Footer>
           <Link href="/register">회원가입</Link>
-          {userName && <button onClick={onClickLogout}>Logout</button>}
         </Footer>
       </LoginFormWrapper>
     </LoginWrapper>
