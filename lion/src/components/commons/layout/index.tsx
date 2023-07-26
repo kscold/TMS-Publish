@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
-import LayoutBanner from "./banner";
 import LayoutFooter from "./footer";
 import LayoutHeader from "./header";
-import LayoutNavigation from "./navigation";
+// import LayoutBanner from "./banner";
+// import LayoutNavigation from "./navigation";
 import styled from "@emotion/styled";
 
 const HIDDEN_HEADERS = [
@@ -11,11 +11,11 @@ const HIDDEN_HEADERS = [
   // "/queryroom",
 ];
 
-const HIDDEN_BANNER = ["/", "/queryroom", "/login", "/register"];
+// const HIDDEN_BANNER = ["/", "/queryroom", "/login", "/register"];
 
-const HIDDEN_NAV = ["/", "/queryroom", "/login", "/register"];
+// const HIDDEN_NAV = ["/", "/queryroom", "/login", "/register"];
 
-const HIDDEN_FOOTER = [];
+const HIDDEN_FOOTER = ["/queryroom"];
 
 const Wrapper = styled.div`
   width: 100%;
@@ -50,16 +50,16 @@ export default function Layout(props: ILayoutProps): JSX.Element {
   console.log("===========");
 
   const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath);
-  const isHiddenBanner = HIDDEN_BANNER.includes(router.asPath);
-  const isHiddenNavigation = HIDDEN_NAV.includes(router.asPath);
+  // const isHiddenBanner = HIDDEN_BANNER.includes(router.asPath);
+  // const isHiddenNavigation = HIDDEN_NAV.includes(router.asPath);
   const isHiddenFooter = HIDDEN_FOOTER.includes(router.asPath);
 
   return (
     <Wrapper>
       {!isHiddenHeader && <LayoutHeader />}
       <ContentWrapper>
-        {!isHiddenBanner && <LayoutBanner />}
-        {!isHiddenNavigation && <LayoutNavigation />}
+        {/* {!isHiddenBanner && <LayoutBanner />}
+        {!isHiddenNavigation && <LayoutNavigation />} */}
         <div>
           <div>{props.children}</div>
         </div>
