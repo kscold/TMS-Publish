@@ -1,3 +1,4 @@
+// loginfunc.tsx
 import React, { useState } from "react";
 import Link from "next/link";
 import {
@@ -9,12 +10,16 @@ import {
 } from "./logincss";
 
 import KakaoLoginButton from "./KakaoLoginButton";
+import { useRecoilState } from "recoil";
+import { userNameState } from "../../commons/layout/header/recoilState";
 
 const Login = (): JSX.Element => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
+
+  const [userName, setUserName] = useRecoilState(userNameState); // Use the Recoil state for userName
 
   const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
@@ -29,9 +34,15 @@ const Login = (): JSX.Element => {
     ) {
       console.log("Login successful");
       localStorage.setItem("isLoggedIn", "true");
+      setUserName("John Doe"); // Set the userName in Recoil state upon successful login
     } else {
       console.log("Login failed");
     }
+  };
+
+  const onClickLogout = (): void => {
+    localStorage.removeItem("isLoggedIn");
+    setUserName(null); // Set the userName in Recoil state to null upon logout
   };
 
   return (
@@ -61,6 +72,7 @@ const Login = (): JSX.Element => {
         <KakaoLoginButton />
         <Footer>
           <Link href="/register">회원가입</Link>
+          {userName && <button onClick={onClickLogout}>Logout</button>}
         </Footer>
       </LoginFormWrapper>
     </LoginWrapper>
