@@ -8,11 +8,11 @@ export const isLoginVisibleState = atom<boolean>({
 });
 
 // 카카오 이름
-const getInitialUserName = () => {
+const getInitialUserName = (): string | null => {
   // Check if localStorage is available (i.e., running in the browser)
   if (typeof window !== "undefined") {
     const userNameFromLocalStorage = localStorage.getItem("userName");
-    return userNameFromLocalStorage || null;
+    return userNameFromLocalStorage ?? null;
   }
 
   // If running on the server, return null as there's no localStorage

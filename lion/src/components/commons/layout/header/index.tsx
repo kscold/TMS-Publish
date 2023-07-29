@@ -19,10 +19,10 @@ const LayoutHeader = (): JSX.Element => {
   const [isLoginVisible, setIsLoginVisible] =
     useRecoilState(isLoginVisibleState);
   const [userName, setUserName] = useRecoilState(userNameState); // Use the Recoil state for userName
+  const [isUserNameButtonSelected, setIsUserNameButtonSelected] =
+    useState(false);
 
-  console.log("userName in LayoutHeader:", userName);
-
-  const onClickNavigation = (path: string): void => {
+  const onClickHeader = (path: string): void => {
     setIsLoginVisible(false); // Hide the login floating window before navigating
     void router.push(path);
   };
@@ -55,7 +55,7 @@ const LayoutHeader = (): JSX.Element => {
       <NavBarWrapper>
         <Logo
           onClick={() => {
-            onClickNavigation("/");
+            onClickHeader("/");
           }}
         >
           <img
@@ -67,15 +67,15 @@ const LayoutHeader = (): JSX.Element => {
         <NavLinks>
           <NavLink
             onClick={() => {
-              onClickNavigation("/queryroom");
+              onClickHeader("/QuestionRoom");
             }}
-            className={router.pathname === "/queryroom" ? "selected" : ""}
+            className={router.pathname === "/QuestionRoom" ? "selected" : ""}
           >
             질문방
           </NavLink>
           <NavLink
             onClick={() => {
-              onClickNavigation("/blog");
+              onClickHeader("/blog");
             }}
             className={router.pathname === "/blog" ? "selected" : ""}
           >
@@ -83,18 +83,38 @@ const LayoutHeader = (): JSX.Element => {
           </NavLink>
           <UserNameButton
             isLoginVisible={isLoginVisible}
-            onClick={onClickLogin}
+            onClick={() => {
+              setIsUserNameButtonSelected((prev) => !prev); // Toggle the isUserNameButtonSelected state
+              onClickLogin();
+            }}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            disabled={!!userName} // Disable the UserNameButton when the user is logged in
+            className={
+              (isLoginVisible || (userName && isUserNameButtonSelected)) &&
+              !userName
+                ? "selected"
+                : ""
+            }
           >
             {userName ? (
               <>
                 <UserOutlined />
                 {`Welcome ${userName}!`}
-                <UserNameSection isHovered={isHovered} isLoggedIn={!userName}>
-                  <NavLink>My Page</NavLink>
+                <UserNameSection
+                  isHovered={isHovered}
+                  isLoggedIn={!userName || isUserNameButtonSelected}
+                >
+                  <NavLink
+                    onClick={() => {
+                      onClickHeader("/MyPage");
+                    }}
+                    className={router.pathname === "/MyPage" ? "selected" : ""}
+                  >
+                    마이페이지
+                  </NavLink>
                   {userName && (
-                    <NavLink onClick={onClickLogout}>Logout</NavLink>
+                    <NavLink onClick={onClickLogout}>로그아웃</NavLink>
                   )}
                 </UserNameSection>
               </>

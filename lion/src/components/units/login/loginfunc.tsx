@@ -19,7 +19,7 @@ const Login = (): JSX.Element => {
     password: "",
   });
 
-  const [userName, setUserName] = useRecoilState(userNameState); // Use the Recoil state for userName
+  const [, setUserName] = useRecoilState(userNameState); // Use the Recoil state for userName
 
   const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
@@ -66,7 +66,7 @@ const Login = (): JSX.Element => {
         </form>
         <KakaoLoginButton />
         <Footer>
-          <Link href="/register">회원가입</Link>
+          <Link href="/Register">회원가입</Link>
         </Footer>
       </LoginFormWrapper>
     </LoginWrapper>
