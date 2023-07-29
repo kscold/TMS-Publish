@@ -6,9 +6,7 @@ import LayoutHeader from "./header";
 import styled from "@emotion/styled";
 
 const HIDDEN_HEADERS = [
-  "/section13/13-01-library-icon",
-  "/section13/13-01-library-star",
-  // "/queryroom",
+  // "/MyPage"
 ];
 
 // const HIDDEN_BANNER = ["/", "/queryroom", "/login", "/register"];
